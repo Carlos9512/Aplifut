@@ -2,6 +2,8 @@ package com.example.user.aplifut;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.user.aplifut.FutApi.FutApiService;
@@ -11,6 +13,7 @@ import com.example.user.aplifut.models.Partido;
 import com.example.user.aplifut.models.PartidosRespuesta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,17 +26,30 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "FUTAPI";
     private Retrofit retrofit;
 
+    private RecyclerView recyclerView;
+    private ListaPartidosAdarpter listaPartidosAdarpter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerView = (RecyclerView) findViewById(R.id.RecyclerViewPartidos);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(linearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        listaPartidosAdarpter = new ListaPartidosAdarpter(this);
+
+        recyclerView.setAdapter(listaPartidosAdarpter);
+        
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://my-json-server.typicode.com/Carlos9512/JsonServer/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         obtenerdatos();
+
     }
 
     private void obtenerdatos(){
@@ -95,9 +111,10 @@ public class MainActivity extends AppCompatActivity {
                     PartidosRespuesta partidosRespuesta = response.body();
                     ArrayList<Partido> ListaPartidos= partidosRespuesta.getPartidos();
                     for (int i=0; i < ListaPartidos.size();i++){
-                        Partido parti = ListaPartidos.get(i);
-                        Log.d(TAG, "Partido" + parti.getId());
+                        Partido equi = ListaPartidos.get(i);
+                        Log.d(TAG, "Partidos " + equi.getUrlEquipo1());
                     }
+                    listaPartidosAdarpter.adicionarPartidos(ListaPartidos);
                 } else{
                     Log.e(TAG, " onResponse: " + response.errorBody());
                 }
@@ -116,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Partido partido = response.body();
                     Partido parti = partido;
-                    Log.d(TAG, "Partido Solo " + parti.getId());
+                    Log.d(TAG, "Partido Solo " + parti.getNombreEquipo2());
 
                 } else{
                     Log.e(TAG, " onResponse: " + response.errorBody());

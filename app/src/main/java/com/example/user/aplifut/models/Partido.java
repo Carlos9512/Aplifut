@@ -2,10 +2,57 @@ package com.example.user.aplifut.models;
 
 public class Partido {
     private int id;
-    private int e1;
-    private int g1;
-    private int e2;
-    private int g2;
+    private int idEquipo1;
+    private String nombreEquipo1;
+    private String urlEquipo1;
+    private String golesEquipo1;
+    private int idEquipo2;
+    private String nombreEquipo2;
+    private String urlEquipo2;
+    private String golesEquipo2;
+    private String fecha;
+    private String estadio;
+    private String estado;
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getEstadio() {
+        return estadio;
+    }
+
+    public void setEstadio(String estadio) {
+        this.estadio = estadio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getUrlEquipo1() {
+        return urlEquipo1;
+    }
+
+    public void setUrlEquipo1(String urlEquipo1) {
+        this.urlEquipo1 = urlEquipo1;
+    }
+
+    public String getUrlEquipo2() {
+        return urlEquipo2;
+    }
+
+    public void setUrlEquipo2(String urlEquipo2) {
+        this.urlEquipo2 = urlEquipo2;
+    }
 
     public int getId() {
         return id;
@@ -15,35 +62,54 @@ public class Partido {
         this.id = id;
     }
 
-    public int getE1() {
-        return e1;
+    public int getIdEquipo1() {
+        return idEquipo1;
     }
 
-    public void setE1(int e1) {
-        this.e1 = e1;
+    public void setIdEquipo1(int idEquipo1) {
+        this.idEquipo1 = idEquipo1;
     }
 
-    public int getG1() {
-        return g1;
+    public String getNombreEquipo1() {
+        return nombreEquipo1;
     }
 
-    public void setG1(int g1) {
-        this.g1 = g1;
+    public void setNombreEquipo1(String nombreEquipo1) {
+        this.nombreEquipo1 = nombreEquipo1;
     }
 
-    public int getE2() {
-        return e2;
+    public String getGolesEquipo1() {
+        return golesEquipo1;
     }
 
-    public void setE2(int e2) {
-        this.e2 = e2;
+    public void setGolesEquipo1(String golesEquipo1) {
+        this.golesEquipo1 = golesEquipo1;
     }
 
-    public int getG2() {
-        return g2;
+    public String getGolesEquipo2() {
+        return golesEquipo2;
     }
 
-    public void setG2(int g2) {
-        this.g2 = g2;
+    public void setGolesEquipo2(String golesEquipo2) {
+        this.golesEquipo2 = golesEquipo2;
     }
+
+    public int getIdEquipo2() {
+        return idEquipo2;
+    }
+
+    public void setIdEquipo2(int idEquipo2) {
+        this.idEquipo2 = idEquipo2;
+    }
+
+    public String getNombreEquipo2() {
+        return nombreEquipo2;
+    }
+
+    public void setNombreEquipo2(String nombreEquipo2) {
+        this.nombreEquipo2 = nombreEquipo2;
+    }
+
+
+
 }
